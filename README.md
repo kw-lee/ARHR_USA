@@ -19,7 +19,7 @@ The datasets are located at `./data` folder. We do not upload datasets for copyr
 
 * [State Population by Characteristics: 2010-2018](https://www.census.gov/data/tables/time-series/demo/popest/2010s-state-detail.html)
 * [Crime in the United States1 by Region, Geographic Division, and State: 2017–2018](https://ucr.fbi.gov/crime-in-the-u.s/2018/crime-in-the-u.s.-2018/tables/table-4)
-* [Average Annual Temperature and Precipiation: 1981-2010] (https://www.usclimatedata.com/)
+* [Average Annual Temperature and Precipiation: 1981-2010](https://www.usclimatedata.com/)
 
 ## Envrionments
 
