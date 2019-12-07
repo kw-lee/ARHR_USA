@@ -1,18 +1,45 @@
+library(tidyverse)
+
+# load data
+usa_data <- read.csv('data/data.csv')
+
 # preprocess data
+colnames(usa_data)
+usa_data <- usa_data %>%
+  select(Alpha.Code, race1, race2, race4, 
+    med_age, income, vcrime, temperature, precipitation)
 
-# example output
-usa_data = data.frame(
-  state = c("DE", "PA"),
-  pop_age00 = c(1/4, 1/3),
-  pop_age01 = c(1/3, 1/4), 
-  # ... pop_age85
-  race_1 = c(1/4, 1/4),
-  # ... race_2, 3, 4, 5
-  # if can, sex_0, sex_1 (female, male)
-  temp = c(23.0, 24.5),
-  rain = c(34.0, 72.3),
-  crime = c(0.3, 0.2), 
-  income = c(23.4, 32.4)
-)
+n <- nrow(usa_data)
 
-head(usa_data)
+# state
+state <- usa_data$Alpha.Code
+
+# response variable
+Y <- usa_data %>%
+  select(race1, race2, race4) %>%
+  as.matrix()
+
+# simplex
+for (i in 1:n) {
+  Y[i, ] = Y[i, ] / sum(Y[i, ])
+}
+
+# covariate
+X <- usa_data[-(1:4)] %>%
+  mutate_all(as.numeric) %>%
+  as.matrix()
+X
+
+# normalize
+for (j in 1:ncol(X)) {
+  X[,j] = (X[,j]-min(X[,j])) / (max(X[,j])-min(X[,j]))
+}
+
+# Suffle data
+set.seed(0)
+shuffle = sample(1:n)
+X <- X[shuffle,]
+Y <- Y[shuffle, ]
+state <- state[shuffle]
+
+save(list = c('state', 'Y', 'X'), file = "src/usa_data.Rdata")

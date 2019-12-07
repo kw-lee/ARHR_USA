@@ -244,3 +244,5 @@ TSWLatexianTemp*
 # data foler 
 # for copyright
 data/
+
+*.code-workspace
