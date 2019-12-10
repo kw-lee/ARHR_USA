@@ -1,7 +1,7 @@
 # load libraries
 library(Compositional)
 
-load('src/usa_data.Rdata')
+load('usa_data.Rdata')
 
 # Function for computing square norm of y1 minus y2
 # y1 and y2: compositional vectors
