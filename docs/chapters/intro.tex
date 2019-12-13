@@ -1,1 +1,8 @@
-\section{Introduction}\label{sec:intro}
+\section{Introduction}
+\label{sec:intro}
+
+\ \quad 우리는 비모수함수추정론 강의를 통해 smooth backfitting 알고리즘을 사용한 additive mean regression model의 적합, 그리고 이 알고리즘의 convergence를 포함한 asymptotic property에 대해 학습하였다. 또한, mean을 추정하고자 하는 반응변수(response)가 Euclidean인 경우에서 더 나아가 Hilbertian인 경우에 대해서도 다루었다.
+
+Simplex 데이터는 Euclidean 형태이나 모든 원소의 합이 1이라는 조건을 만족하는 데이터이다. 이러한 데이터는 주로 3개 이상의 그룹으로 나누어지는 비율의 형태로서, 실존하는 데이터 형태 중에서 non-Euclidean이면서 Hilbertian인 대표적인 형태이다. Hilbertian response에 대해 처음으로 smooth backfitting을 통한 additive regression model을 제시한 논문(J. M. Jeon, B. U. Park)에서도 simplex 데이터가 대표적인 실제 데이터 예시로써 활용되었다.
+
+이 보고서에서는 논문에서 제시된 코드를 사용하여 미국 지역별 인종 비율 데이터를 분석해 본다. 미국은 다양한 인종이 살고 있는 나라이고, 각 주마다 기온, 강수량 등의 환경적인 요소들과 평균 소득 등의 생활 관련 요소들이 서로 다르다. 이러한 요소들이 인종 비율에 어떻게 연관되는지 파악하기 위해 additive model을 적용하고, 각 설명변수의 변화에 따라 인종 비율이 어떻게 변하는 지를 시각적으로 표현해 본다.
