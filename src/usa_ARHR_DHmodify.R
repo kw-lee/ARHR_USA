@@ -1,7 +1,7 @@
 # codes from https://github.com/jeong-min-jeon/Add-Reg-Hilbert-Res
 install.packages("fields")
 # Load necessary source file
-# setwd('C:/Users/DHL/Desktop/DHL/ºñ¸ð¼ö/')
+# setwd('C:/Users/DHL/Desktop/DHL/ï¿½ï¿½ï¿½ï¿½/')
 source('Add-Reg-Hilbert-Res-master/Codes for election data/R_functions_for_proposed_method_for_simplex_responses.R') # path of the file
 
 # Load necessary dll files
@@ -58,5 +58,7 @@ for(k in 1:nfolds) {
   }
   error[k] = sum(temp_dist) / nrow(Y_test)
 }
-error
-mean(error)
+error_SBF = error
+aspe_SBF = mean(error)
+
+save(list = c('error_SBF', 'aspe_SBF'), file = "src/aspe_SBF.Rdata")

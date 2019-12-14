@@ -1,7 +1,7 @@
 # load libraries
 library(Compositional)
 
-load('usa_data.Rdata')
+load('src/usa_data.Rdata')
 
 # Function for computing square norm of y1 minus y2
 # y1 and y2: compositional vectors
@@ -39,10 +39,9 @@ for (k in 1:nfolds) {
   }
   error_diri[k] = sum(temp_dist)/nrow(Y_hat)
 }
-mean(error_diri)
 
-# Nonlinear regression
-error_nonlinear = c()
+# Nonlinear regression; ols
+error_ols = c()
 for (k in 1:nfolds) {
   s = which(folds == k)
   X_test = X[s, ]
@@ -54,9 +53,8 @@ for (k in 1:nfolds) {
   for(i in 1:nrow(Y_hat)) {
     temp_dist[i] = comp_distance(as.vector(Y_test[i,]), as.vector(Y_hat[i,]))
   }
-  error_nonlinear[k] = sum(temp_dist)/nrow(Y_hat)
-} # how to fix Inf issue
-mean(error_nonlinear)
+  error_ols[k] = sum(temp_dist)/nrow(Y_hat)
+} 
 
 # Kullback-Leibler-divergence-based regression
 error_kl=c()
@@ -75,13 +73,11 @@ for(k in 1:nfolds)
   }
   error_kl[k]=sum(temp_dist)/nrow(Y_hat)
 }
-mean(error_kl)
 
 # Alpha transformation method by Tsagris (2015)
 optimal_alpha=c()
 error_alpha=c()
-for(k in 1:nfolds)
-{
+for(k in 1:nfolds) {
   print(k)
   s=which(folds==k)
   X_test=X[s,]
@@ -98,4 +94,20 @@ for(k in 1:nfolds)
   error_alpha[k]=sum(temp_dist)/nrow(Y_hat)
 }
 
-mean(error_alpha)
+aspe_diri = mean(error_diri)
+aspe_ols = mean(error_ols)
+aspe_kl = mean(error_kl)
+aspe_alpha = mean(error_alpha)
+
+save(list = c('aspe_diri', 'aspe_ols', 'aspe_kl', 'aspe_alpha', 'optimal_alpha'), file = "src/aspe_existing.Rdata")
+
+# > aspe_diri
+# [1] 0.7118787
+# > aspe_ols
+# [1] 100.0437
+# > aspe_kl
+# [1] 0.7314985
+# > aspe_alpha
+# [1] 0.512279
+# > optimal_alpha
+#  [1] -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
