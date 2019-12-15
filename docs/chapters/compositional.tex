@@ -1,8 +1,19 @@
-\section{Methods}\label{sec:methods}
+\section{Compositional Data}
 
-\ \quad 반응변수 $Y = (Y_1, Y_2,Y_3)$는 유클리드 공간 상의 자료가 아닌 3차원 simplex $S_1^3$ 위의 자료이다. 이 절에서는 $p$차원 simplex $S_1^p$ 위의 자료(compositional data)를 분석하기 위해 제안된 모형들에 대해 간략히 소개한다. 
+\subsection{Aitchison geometry}\label{sec:Aitchison}
 
-가장 간단한 모형으로, \textit{Multinomial logistic regression}
+\ \quad 다음과 같은 $p$차원 simplex $S_k^p$를 생각하자
+$$S_k^p = \Set{\bx = (x_1, \cdots, x_p) \in \mathbb{R}^p : x_i \geq 0,~i=1,2,\cdots, p,~\sum_{i=1}^p x_i =k}.$$
+분석해야 할 자료에서 반응변수 $Y = (Y_1, Y_2,Y_3)$는 유클리드 공간 상의 자료가 아닌 3차원 simplex $S_1^3$ 위의 자료이다. 이와  같은 자료를 compositional data라 부른다. $p$차원 simplex $S_1^p$ 위에 다음과 같이 연산을 정의하면 이 벡터공간은 Hilbert space가 됨이 알려져 있으며 \citep{aitchison1982statistical} 이러한 공간을 Aitchison geometry 또는 Aitchison simplex라 한다
+\begin{align*}
+    x \oplus y &= \left( \frac{x_1y_1}{\sum x_i y_i}, \cdots, \frac{x_p y_p}{\sum x_i y_i} \right), \\
+    \alpha \odot y &= \left( \frac{x_1^\alpha}{\sum x_i^\alpha}, \cdots, \frac{x_p^\alpha}{\sum x_i^\alpha} \right), \\
+    \langle x, y \rangle &= \frac{1}{2D} \sum_i \sum_j \log \frac{x_i}{x_j} \log\frac{y_i}{y_j}.
+\end{align*}
+
+\subsection{Methods}\label{sec:methods}
+
+\ \quad 이 절에서는 compositional data를 분석하기 위해 제안된 모형들에 대해 간략히 소개한다. 먼저, 다음과 같은 \textit{Multinomial logistic regression}
 \begin{equation}\label{eqn:multilogis}
     \begin{gathered}
         \expt{\bY|\bX=\bx} = (\alpha_1(\bx), \alpha_2(\bx), \cdots, \alpha_p(\bx)), \\

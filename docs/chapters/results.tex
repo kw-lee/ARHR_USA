@@ -6,29 +6,26 @@
 
 \subsection{Model Comparison}\label{sec:comparison}
 
-\begin{table}
-\begin{tabular}{ | p{9cm} | m{1.5cm} | } 
-\hline
-Method & ASPE \\
-\hline
-B-SBF with CBS & 5.905169 \\ 
-\hline
-Alpha transformation method (Tsagris(2015)) & 0.512279 \\ 
-\hline
-Kullback-Leibler-divergence-based regression & 0.7314985 \\
-\hline
-Dirichlet regression & 0.7118787 \\
-\hline
-Multinomial Logistic Regression & 100.0437 \\
-\hline
-\end{tabular}
- \caption{Comparison of ASPE}
- \label{table:1}
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{ @{}ll@{}  } 
+		\toprule
+		Method & ASPE \\
+		\midrule
+		B-SBF with CBS & 5.905169 \\ 
+		Alpha transformation method \citep{tsagris2015regression} & 0.512279 \\ 
+		Dirichlet regression & 0.7118787 \\
+		Multinomial logistic regression (KL divergence) & 0.7314985 \\
+		Multinomial logistic regression (OLS) & 100.0437 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Comparison of ASPE}
+	\label{table:1}
 \end{table}
 
-\ \quad Section \ref{sec:methods}에서 설명한 다양한 방법으로 적합하였으며, cross-validation을 통해 구한 average squared prediction error(ASPE)은 Table \ref{table:1}에 제시되어 있다. Simplex 데이터의 거리 함수... (거리함수에 대한 설명 필요) Alpha transformation method에서 alpha값은 모두 -1로 조정하였다.
+\ \quad Section \ref{sec:methods}에서 설명한 다양한 방법으로 적합하였으며, cross-validation을 통해 구한 average squared prediction error(ASPE)은 Table \ref{table:1}에 제시되어 있다. 여기서 ASPE를 계산하는 데 필요한 거리 $d$는 Aitchison geometry에서 계산하였다. Alpha transformation method에서 alpha값은 10-fold CV로 계산된 -1\를 사용하였다.
 
-ASPE를 기준으로 하였을 때, multinomial logistic을 제외한 나머지 모수적 모형들은 비교적 서로 비슷하고 준수하였다. Bochner smooth backfitting을 활용한 비모수적 모형은 이들에 비해 error가 더 크게 나타났다. Multinomial logistic의 경우 error가 지나치게 높게 계산되었는데, 이는 simplex 데이터에 극단적으로 치우친 비율이 있는 경우 수치가 조금만 차이가 나도 서로 거리가 매우 크게 계산되기 때문인 것으로 보인다.
+ASPE를 기준으로 하였을 때, multinomial logistic을 제외한 나머지 모수적 모형들은 비교적 서로 비슷한 결과를 보여주었다. Bochner smooth backfitting을 활용한 비모수적 모형은 이들에 비해 error가 더 크게 나타났다. Multinomial logistic의 경우 error가 지나치게 높게 계산되었는데, 이는 simplex 데이터에 극단적으로 치우친 비율이 있는 경우 수치가 조금만 차이가 나도 서로 거리가 매우 크게 계산되기 때문인 것으로 보인다.
 
 \subsection{Visualization}\label{sec:visual}
 
