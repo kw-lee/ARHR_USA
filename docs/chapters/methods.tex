@@ -1,6 +1,6 @@
 \section{Methods}\label{sec:methods}
 
-반응변수 $Y = (Y_1, Y_2,Y_3)$는 유클리드 공간 상의 자료가 아닌 3차원 simplex $S_1^3$ 위의 자료이다. 이 절에서는 $p$차원 simplex $S_1^p$ 위의 자료(compositional data)를 분석하기 위해 제안된 모형들에 대해 간략히 소개한다. 
+\ \quad 반응변수 $Y = (Y_1, Y_2,Y_3)$는 유클리드 공간 상의 자료가 아닌 3차원 simplex $S_1^3$ 위의 자료이다. 이 절에서는 $p$차원 simplex $S_1^p$ 위의 자료(compositional data)를 분석하기 위해 제안된 모형들에 대해 간략히 소개한다. 
 
 가장 간단한 모형으로, \textit{Multinomial logistic regression}
 \begin{equation}\label{eqn:multilogis}
@@ -9,7 +9,7 @@
         \alpha_1(\bx) = \frac{1}{1+\sum_{l=2}^p \exp(\beta_{l0}+\bbeta_l^T \bx)},~ \alpha_j(\bx) = \frac{\exp(\beta_{j0}+\bbeta_j^T)}{1+\sum_{l=2}^p \exp(\beta_{l0}+\bbeta_l^T \bx)},~ \text{for }j \geq 2
     \end{gathered}
 \end{equation}
-을 생각해볼 수 있다. 여기서 모수 $\beta_{j0}$, $\bbeta_j$의 추정으로 최소제곱 추정(least squares)이나 다음과 같이 정의되는 Kullback-Leibler divergence를 최소화하는 값을 사용할 수 있다
+을 생각해볼 수 있다. 여기서 모수 $\beta_{j0}$, $\bbeta_j$의 추정으로 최소제곱 추정(least squares)이나 다음과 같이 정의되는 Kullback-Leibler divergence를 최소화하는 값을 사용할 수 있다.
 $$\text{KL} = \sum_{i=1}^p \sum_{j=1}^p Y_{ij} \Log{Y_{ij}/\alpha_j(\bX_i)}.$$
 각 모형은 R의 \texttt{Compositional} 패키지의 \texttt{ols.compreg}, \texttt{kl.compreg}를 이용해 적합할 수 있다. 해당 패키지에서는 Jensen-Shannon divergence, symmetric Kullback-Leibler divergence 등을 최소화하는 모형을 적합하는 함수들 또한 제공하고 있다.
 
