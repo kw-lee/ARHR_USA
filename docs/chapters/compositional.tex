@@ -1,10 +1,8 @@
-\section{Compositional Data}
+\section{Compositional Data}\label{sec:compositional}
 
 \subsection{Aitchison geometry}\label{sec:Aitchison}
 
-\ \quad 다음과 같은 $p$차원 simplex $S_k^p$를 생각하자
-$$S_k^p = \Set{\bx = (x_1, \cdots, x_p) \in \mathbb{R}^p : x_i \geq 0,~i=1,2,\cdots, p,~\sum_{i=1}^p x_i =k}.$$
-분석해야 할 자료에서 반응변수 $Y = (Y_1, Y_2,Y_3)$는 유클리드 공간 상의 자료가 아닌 3차원 simplex $S_1^3$ 위의 자료이다. 이와  같은 자료를 compositional data라 부른다. $p$차원 simplex $S_1^p$ 위에 다음과 같이 연산을 정의하면 이 벡터공간은 Hilbert space가 됨이 알려져 있으며 \citep{aitchison1982statistical} 이러한 공간을 Aitchison geometry 또는 Aitchison simplex라 한다
+\ \quad 분석해야 할 자료에서 반응변수 $Y = (Y_1, Y_2,Y_3)$는 유클리드 공간 상의 자료가 아닌 3차원 simplex $S_1^3$ 위의 자료이다. 이와  같은 자료를 compositional data라 부른다. $p$차원 simplex $S_1^p$ 위에 다음과 같이 연산을 정의하면 이 벡터공간은 힐베르트 공간이 됨이 알려져 있으며 \citep{aitchison1982statistical} 이러한 공간을 Aitchison geometry 또는 Aitchison simplex라 한다
 \begin{align*}
     x \oplus y &= \left( \frac{x_1y_1}{\sum x_i y_i}, \cdots, \frac{x_p y_p}{\sum x_i y_i} \right), \\
     \alpha \odot y &= \left( \frac{x_1^\alpha}{\sum x_i^\alpha}, \cdots, \frac{x_p^\alpha}{\sum x_i^\alpha} \right), \\
@@ -32,6 +30,6 @@ $\bX$가 주어져 있을 때, $\bY$의 조건부 분포를 디리클레(Dirichl
 \end{equation}
 을 적합할 수도 있다. 이때 $\phi$, $\beta_{j0}$, $\bbeta_j$의 값의 추정은 최대가능도 추정(maximum likelihood estimation)을 이용한다. \texttt{Compositional} 패키지의 \texttt{diri.reg} 함수를 이용해 적합할 수 있다.
 
-위의 모형들은 $Y_i=0$인 자료가 존재할 때, 모형이 제대로 추정되지 않는 문제가 발생한다. 이 경우 \citet{tsagris2015regression}가 제안한 \textit{Regression with compositional data using the $\alpha$-transformation} ($\alpha$-regression)\를 고려해볼 수 있다. $\alpha$-regression 모형은 \citet{tsagris2011data}가 제안한 $\alpha$-transform을 통해 자료를 변환하고, 변환된 자료에 적당한 모수적 모형을 적합한다. 이때, 조율 모수(tunning parameter) $|\alpha|<1$ 값은 cross validation을 통해 결정할 수 있다. $\alpha$-regression 모형은 \texttt{Compositional} 패키지의 \texttt{alfa.reg} 함수를 이용해 적합할 수 있다.
+위의 모형들은 $Y_i=0$인 자료가 존재할 때, 모형이 제대로 추정되지 않는 문제가 발생한다. 이 경우 \citet{tsagris2015regression}가 제안한 \textit{Regression with compositional data using the $\alpha$-transformation} ($\alpha$-regression)\를 고려해볼 수 있다. $\alpha$-regression 모형은 \citet{tsagris2011data}가 제안한 $\alpha$-transform을 통해 자료를 변환하고, 변환된 자료에 적당한 모수적 모형을 적합한다. 이때, 조율 모수(tunning parameter) $\alpha$ 값은 cross validation을 통해 결정할 수 있다. $\alpha$-regression 모형은 \texttt{Compositional} 패키지의 \texttt{alfa.reg} 함수를 이용해 적합할 수 있다.
 
 앞서 언급한 모형들은 모두 모수적 모형으로 일반적인 형태의 함수를 추정하기엔 제약이 있다. 이러한 문제를 해결할 수 있는 모형으로 \citet{jeon2018additive}이 제안한 \textit{Bochner smooth backfitting estimators} (B-SBF)을 고려해볼 수 있다. B-SBF 모형은 앞서 언급한 모형들에 비해 모형의 형태에 큰 제약을 두지 않는다. 비모수 함수 추정에 필요한 bandwidth는 동일한 논문에서 제안된 CBS(Coordinate-wise Bandwidth Selection) 알고리듬을 사용하여 결정할 수 있다. B-SBF 모형은 적합 과정에서 모수적 모형들보다 더 많은 시간을 필요로 하지만 유연한 구조를 갖는 함수공간을 탐색할 수 있다. B-SBF 모형은 github repository \url{https://github.com/jeong-min-jeon/Add-Reg-Hilbert-Res}의 소스코드를 이용해 적합할 수 있다.

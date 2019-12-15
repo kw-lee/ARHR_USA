@@ -1,10 +1,14 @@
 \section{Results}\label{sec:results}
 
-% 이 절에서는 \ref{sec:methods}에서 소개한 모형들을 자료에 적용한 결과를 다룬다. 각 모형의 성능은 \citet{jeon2018additive}에서와 같이 다음과 같이 정의되는 10-fold average squared prediction error (ASPE) 값으로 비교하였다
 % $$ ㅁㄹㄴㄹ $$
 % . 
 
 \subsection{Model Comparison}\label{sec:comparison}
+
+
+\ \quad 이 절에서는 \ref{sec:methods}에서 소개한 모형들을 자료에 적용한 결과를 다룬다. 각 모형의 성능은 \citet{jeon2018additive}에서와 같이 다음과 같이 정의되는 10-fold average squared prediction error (ASPE) 값으로 비교하였다
+
+Table \ref{table:1}에 그 결과를 제시하였다. $\alpha$-regression 모형에서 $\alpha$값은 10-fold CV로 선택된 -1\를 사용하였다.
 
 \begin{table}[!h]
 	\centering
@@ -12,18 +16,16 @@
 		\toprule
 		Method & ASPE \\
 		\midrule
-		B-SBF with CBS & 5.905169 \\ 
-		$\alpha$-regression \citep{tsagris2015regression} & 0.512279 \\ 
-		Dirichlet regression & 0.7118787 \\
-		Multinomial logistic regression (KL divergence) & 0.7314985 \\
 		Multinomial logistic regression (OLS) & 100.0437 \\
+		Multinomial logistic regression (KL divergence) & 0.7314985 \\
+		Dirichlet regression & 0.7118787 \\
+		\textbf{$\alpha$-regression \citep{tsagris2015regression}} & \textbf{0.512279} \\ 
+		B-SBF with CBS & 5.905169 \\ 
 		\bottomrule
 	\end{tabular}
 	\caption{Comparison of ASPE}
 	\label{table:1}
 \end{table}
-
-\ \quad Section \ref{sec:methods}에서 설명한 다양한 방법으로 적합하였으며, cross-validation을 통해 구한 average squared prediction error(ASPE)\은 Table \ref{table:1}에 제시되어 있다. $\alpha$-regression 모형에서 $\alpha$값은 10-fold CV로 선택된 -1\를 사용하였다.
 
 ASPE를 기준으로 하였을 때, OLS를 이용한 Multinomial logistic regression 모형을 제외한 나머지 모수적 모형들은 비교적 서로 비슷한 결과를 보여주었다. B-SBF 모형은 이들에 비해 error가 더 크게 나타났다. OLS를 이용한 Multinomial logistic 모형은 error가 지나치게 높게 계산되었는데, 이는 Aitchison geometry의 거리가 simplex의 경계에 위치한 점에서 극단적으로 크게 계산되기 때문인 것으로 보인다.
 
